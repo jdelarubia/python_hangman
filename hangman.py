@@ -5,6 +5,7 @@ chances to guess the right letter. You also have the option to play again. """
 import random
 import sys
 import json
+from app.bcolors import BColors
 
 
 class Game:
@@ -38,19 +39,13 @@ class Game:
                         choice = choice.lower()
                         break
                     else:
-                        print(
-                            bcolors.WARNING
-                            + "That's not one of the options I gave you. Try again."
-                            + bcolors.ENDC
+                        BColors.warning(
+                            "That's not one of the options I gave you. Try again."
                         )
                 else:
-                    print(
-                        bcolors.WARNING
-                        + "I only need one letter. Try again."
-                        + bcolors.ENDC
-                    )
+                    BColors.warning("I only need one letter. Try again.")
             else:
-                print(bcolors.WARNING + "Letters only, gosh. Try again." + bcolors.ENDC)
+                BColors.warning("Letters only, gosh. Try again.")
 
         return choice
 
@@ -89,19 +84,13 @@ class Game:
                         choice = choice.lower()
                         break
                     else:
-                        print(
-                            bcolors.WARNING
-                            + "That's not one of the options I gave you. Try again."
-                            + bcolors.ENDC
+                        BColors.warning(
+                            "That's not one of the options I gave you. Try again."
                         )
                 else:
-                    print(
-                        bcolors.WARNING
-                        + "I only need one letter. Try again."
-                        + bcolors.ENDC
-                    )
+                    BColors.warning("I only need one letter. Try again.")
             else:
-                print(bcolors.WARNING + "Letters only, gosh. Try again." + bcolors.ENDC)
+                BColors.warning("Letters only, gosh. Try again.")
 
         return choice
 
@@ -124,21 +113,13 @@ class Game:
                         choice = choice.lower()
                         break
                     else:
-                        print(
-                            bcolors.WARNING
-                            + "That's not one of the options I gave you. Try again."
-                            + bcolors.ENDC
+                        BColors.warning(
+                            "That's not one of the options I gave you. Try again."
                         )
                 else:
-                    print(
-                        bcolors.WARNING
-                        + "I only need one letter. Try again."
-                        + bcolors.ENDC
-                    )
+                    BColors.warning("I only need one letter. Try again.")
             else:
-                print(
-                    bcolors.WARNING + "Letters only, please. Try again." + bcolors.ENDC
-                )
+                BColors.warning("Letters only, please. Try again.")
 
         return choice
 
@@ -214,11 +195,7 @@ class Game:
             if len(guess) == 1:
                 guess = guess.lower()
                 if guess in self.discovered:
-                    print(
-                        bcolors.WARNING
-                        + "You already guessed that. Try again."
-                        + bcolors.ENDC
-                    )
+                    BColors.warning("You already guessed that. Try again.")
                 elif guess in target:
                     self.discovered.append(guess)
                     print(
@@ -230,11 +207,7 @@ class Game:
                         print("That's not right. Try again.")
                         self.chances -= 1
                     else:
-                        print(
-                            bcolors.WARNING
-                            + "You already guessed that. Try again."
-                            + bcolors.ENDC
-                        )
+                        BColors.warning("You already guessed that. Try again.")
                 print("Missed Letters: ", self.missed)
             elif guess in ["solve", "exit", "quit"]:
                 if guess == "solve":
@@ -248,13 +221,9 @@ class Game:
                     print("Thanks for playing")
                     sys.exit()
             else:
-                print(
-                    bcolors.WARNING
-                    + "You can only guess one letter at a time."
-                    + bcolors.ENDC
-                )
+                BColors.warning("You can only guess one letter at a time.")
         else:
-            print(bcolors.WARNING + "Try guessing a letter" + bcolors.ENDC)
+            BColors.warning("Try guessing a letter")
 
         self.display = ""
         for n in target:
@@ -313,11 +282,11 @@ class Game:
 
         message = ""
         if result == "win":
-            print(bcolors.OKGREEN + "You win!" + bcolors.ENDC)
+            BColors.green("You win!")
             self.wins += 1
             message = f"You've won {self.wins} time{'s' if self.wins != 1 else ''}"
         elif result == "loss":
-            print(bcolors.FAIL + "Game Over! You Lose" + bcolors.ENDC)
+            BColors.failure("Game Over! You Lose")
             self.losses += 1
             message = f"You've lost {self.losses} time{'s' if self.losses != 1 else ''}"
 
@@ -380,21 +349,6 @@ class Game:
 
         with open("highscores.json") as f:
             self.high_scores = json.load(f)
-
-
-class bcolors:
-    """
-    CLI colors
-    """
-
-    HEADER = "\033[95m"
-    OKBLUE = "\033[94m"
-    OKGREEN = "\033[92m"
-    WARNING = "\033[93m"
-    FAIL = "\033[91m"
-    ENDC = "\033[0m"
-    BOLD = "\033[1m"
-    UNDERLINE = "\033[4m"
 
 
 if __name__ == "__main__":
