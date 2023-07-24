@@ -14,3 +14,34 @@ class BColors:
     BOLD = "\033[1m"
     UNDERLINE = "\033[4m"
 
+    @staticmethod
+    def warning(text: str):
+        print(f"{BColors.WARNING}{text}{BColors.ENDC}")
+
+    @staticmethod
+    def failure(text: str):
+        print(f"{BColors.FAIL}{text}{BColors.ENDC}")
+
+    @staticmethod
+    def header(text: str):
+        print(f"{BColors.HEADER}{text}{BColors.ENDC}")
+
+    @staticmethod
+    def underline(text: str):
+        print(f"{BColors.UNDERLINE}{text}{BColors.ENDC}")
+
+    @staticmethod
+    def blue(text: str):
+        print(f"{BColors.OKBLUE}{text}{BColors.ENDC}")
+
+    @staticmethod
+    def green(text: str):
+        print(f"{BColors.OKGREEN}{text}{BColors.ENDC}")
+
+    @staticmethod
+    def bold(text: str):
+        print(f"{BColors.BOLD}{text}{BColors.ENDC}")
+
+
+if __name__ == "__main__":
+    pass
