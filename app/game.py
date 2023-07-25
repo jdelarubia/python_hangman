@@ -49,12 +49,8 @@ class Game:
         return choice
 
     def get_username(self):
-        """
-        Allows the user to choose a username
-
-        :return:
-        """
-        name = input("What's your name? ")
+        """Allows the user to choose a username"""
+        name = GamePrompts.get_username()
         message = (
             f"Welcome back, {name}"
             if self.high_scores.get(name)
@@ -243,7 +239,7 @@ class Game:
             self.chances = 6
             game_type = GamePrompts.choose_game_type()
             if game_type == "w":
-                difficulty = self.choose_difficulty()
+                difficulty = GamePrompts.choose_difficulty()
                 target = self.word_game_setup(difficulty)
             elif game_type == "p":
                 topic = self.choose_topic()
