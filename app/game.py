@@ -18,22 +18,20 @@ class Game:
         self.wins = 0
         self.losses = 0
 
-        self.load_highscore()
+        self.username = self.get_username()
         self.get_username()
 
-
-    def get_username(self):
+    def get_username(self) -> str:
         """Allows the user to choose a username"""
-        name = GamePrompts.get_username()
+        username = GamePrompts.get_username()
         message = (
-            f"Welcome back, {name}"
-            if self.high_scores.get(name)
-            else f"Nice to meet you, {name}"
+            f"Welcome back, {username}"
+            if self.high_scores.get(username)
+            else f"Nice to meet you, {username}"
         )
         print(message)
         print("I'll be keeping track of your high score. Good Luck!\n")
-        self.username = name
-
+        return username
 
     @staticmethod
     def choose_topic():
