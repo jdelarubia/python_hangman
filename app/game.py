@@ -21,32 +21,6 @@ class Game:
         self.load_highscore()
         self.get_username()
 
-    @staticmethod
-    def choose_game_type():
-        """
-        Allows the user to choose between the two game types: words or phrases.
-
-        :return:
-        """
-
-        while True:
-            options = ["p", "w", "P", "W"]
-            choice = input("Choose game type: w for words. p for phrases: ")
-            if choice.isalpha():
-                if len(choice) == 1:
-                    if choice in options:
-                        choice = choice.lower()
-                        break
-                    else:
-                        BColors.warning(
-                            "That's not one of the options I gave you. Try again."
-                        )
-                else:
-                    BColors.warning("I only need one letter. Try again.")
-            else:
-                BColors.warning("Letters only, gosh. Try again.")
-
-        return choice
 
     def get_username(self):
         """Allows the user to choose a username"""
@@ -60,34 +34,6 @@ class Game:
         print("I'll be keeping track of your high score. Good Luck!\n")
         self.username = name
 
-    @staticmethod
-    def choose_difficulty():
-        """
-        Allows the user to choose the difficulty of a word game. chooses between
-        easy, medium and hard wordlists.
-
-        :return:
-        """
-
-        options = ["e", "E", "n", "N", "h", "H"]
-
-        while True:
-            choice = input("Choose difficulty: e for easy. n for normal. h for hard. ")
-            if choice.isalpha():
-                if len(choice) == 1:
-                    if choice in options:
-                        choice = choice.lower()
-                        break
-                    else:
-                        BColors.warning(
-                            "That's not one of the options I gave you. Try again."
-                        )
-                else:
-                    BColors.warning("I only need one letter. Try again.")
-            else:
-                BColors.warning("Letters only, gosh. Try again.")
-
-        return choice
 
     @staticmethod
     def choose_topic():
