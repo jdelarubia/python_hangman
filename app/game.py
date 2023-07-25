@@ -57,7 +57,7 @@ class Game:
             else f"Nice to meet you, {name}"
         )
         print(message)
-        print("I'll be keeping track of your highscore. Good Luck!\n")
+        print("I'll be keeping track of your high score. Good Luck!\n")
         self.username = name
 
     @staticmethod
