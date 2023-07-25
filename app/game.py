@@ -4,6 +4,7 @@ import random
 import sys
 import json
 from app.bcolors import BColors
+from app.gameprompts import GamePrompts
 
 
 class Game:
@@ -240,7 +241,7 @@ class Game:
         wants_to_play = True
         while wants_to_play:
             self.chances = 6
-            game_type = self.choose_game_type()
+            game_type = GamePrompts.choose_game_type()
             if game_type == "w":
                 difficulty = self.choose_difficulty()
                 target = self.word_game_setup(difficulty)
