@@ -5,6 +5,7 @@ import sys
 import json
 from app.bcolors import BColors
 from app.gameprompts import GamePrompts
+from app.scores import Scores
 
 
 class Game:
@@ -19,7 +20,7 @@ class Game:
         self.losses = 0
 
         self.username = self.get_username()
-        self.get_username()
+        self.scores = Scores(self.username)
 
     def get_username(self) -> str:
         """Allows the user to choose a username"""
@@ -238,7 +239,7 @@ class Game:
         :return:
         """
 
-        self.save_highscore()
+        self.scores.save_scores(self.wins)
         again = input("Wanna play again? Y/N: ")
         if again.lower() == "y":
             print("Yay! Let's go again" + "\n")
@@ -263,28 +264,3 @@ class Game:
         self.missed = []
         self.discovered = []
         self.display = ""
-
-    def save_highscore(self):
-        """
-        Saves the high score of the current user
-
-        :return:
-        """
-
-        current_score = self.wins
-        old_score = self.high_scores.get(self.username)
-
-        if old_score is None or current_score > old_score:
-            self.high_scores[self.username] = current_score
-            with open("highscores.json", "w") as f:
-                json.dump(self.high_scores, f, indent=6)
-
-    def load_highscore(self):
-        """
-        Load the high scores
-
-        :return:
-        """
-
-        with open("highscores.json") as f:
-            self.high_scores = json.load(f)
