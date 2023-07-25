@@ -23,3 +23,13 @@ class GamePrompts:
             break
         return choice
 
+    @staticmethod
+    def get_username() -> str:
+        """Prompts the user for a username and returns it.
+
+        Returns:
+            str: username
+        """
+        name = input("What's your name? ")
+        return name
+
