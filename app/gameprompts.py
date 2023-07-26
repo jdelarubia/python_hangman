@@ -6,22 +6,35 @@ from app.bcolors import BColors
 
 class GamePrompts:
     @staticmethod
+    def get_choice_from_user(prompt: str, choices: list) -> str:
+        """Given a prompt to show the user and a list of possible choices, return a single choice
+
+        Args:
+            prompt (str): message to be shown on screen
+            choices (list): list of choices available
+
+        Returns:
+            str: choice
+        """
+        while True:
+            choice = input(prompt).lower()[0]
+            if (not choice.isalpha()) or (choice not in choices):
+                print("Your choice is not in the list of options")
+                BColors.warning("That's not one of the options available. Try again.")
+                continue
+            break
+        return choice
+
+    @staticmethod
     def choose_game_type() -> str:
         """Allows the user to choose between the two game types: words or phrases.
 
         Returns:
             str: user choice
         """
-
-        options = ["p", "w"]
-        while True:
-            choice = input("Choose game type: w for words, p for phrases: ").lower()[0]
-            if (not choice.isalpha()) or (choice not in options):
-                print("Your choice is not in the list of options")
-                BColors.warning("That's not one of the options available. Try again.")
-                continue
-            break
-        return choice
+        choices = ["p", "w"]
+        prompt = "Choose game type: w for words, p for phrases: "
+        return GamePrompts.get_choice_from_user(prompt, choices)
 
     @staticmethod
     def get_username() -> str:
@@ -40,17 +53,9 @@ class GamePrompts:
         Returns:
             str: choice
         """
-
-        options = ["e", "m", "h"]
-        while True:
-            choice = input(
-                "Choose difficulty: e for easy. n for normal. h for hard. "
-            ).lower()[0]
-            if (not choice.isalpha()) or (choice not in options):
-                BColors.warning("That's not one of the options available. Try again.")
-                continue
-            break
-        return choice
+        choices = ["e", "m", "h"]
+        prompt = "Choose difficulty: e for easy. n for normal. h for hard. "
+        return GamePrompts.get_choice_from_user(prompt, choices)
 
     @staticmethod
     def choose_topic():
@@ -59,14 +64,6 @@ class GamePrompts:
         Return:
             str: topic chosen
         """
-
-        options = ["i", "s"]
-        while True:
-            choice = input("Choose difficulty: i for idioms. s for slogans: ").lower()[
-                0
-            ]
-            if (not choice.isalpha()) or (choice not in options):
-                BColors.warning("That's not one of the options available. Try again.")
-                continue
-            break
-        return choice
+        choices = ["i", "s"]
+        prompt = "Choose difficulty: i for idioms. s for slogans: "
+        return GamePrompts.get_choice_from_user(prompt, choices)
