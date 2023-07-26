@@ -6,14 +6,18 @@ from app.bcolors import BColors
 from app.game import Game
 
 
-if __name__ == "__main__":
-    """
-    The action starts here
-    """
+def welcome_user():
     print("Welcome to Hang_words.")
     print(
         "You can quit the game by typing 'exit' or 'quit' instead of guessing a letter. "
     )
     print()
-    g = Game()
+if __name__ == "__main__":
+    """
+    The action starts here
+    """
+    welcome_user()
+    username = GamePrompts.get_username()
+    scores = Scores(username=username)
+    g = Game(username, scores)
     g.play()

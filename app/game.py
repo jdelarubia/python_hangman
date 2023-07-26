@@ -9,9 +9,10 @@ from app.scores import Scores
 
 
 class Game:
-    def __init__(self):
-        self.chances = 6
-        self.high_scores = {}
+    def __init__(self, username: str, scores: Scores):
+        self.username = username
+        self.scores = scores
+        self.high_scores = scores.scores
         self.missed = []
         self.discovered = []
         self.display = ""
