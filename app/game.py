@@ -2,10 +2,10 @@
 """
 import random
 import sys
-import json
 from app.bcolors import BColors
 from app.gameprompts import GamePrompts
 from app.scores import Scores
+from app.loaders import WordLoader, PhraseLoader
 
 
 class Game:
@@ -13,10 +13,6 @@ class Game:
         self.username = username
         self.scores = scores
         self.high_scores = scores.scores
-        self.missed = []
-        self.discovered = []
-        self.display = ""
-        self.username = ""
         self.wins = 0
         self.losses = 0
         self.reset_values()
@@ -29,22 +25,7 @@ class Game:
         :param difficulty:
         :return:
         """
-
-        filename_map = {
-            "e": "easy_hang_words.txt",
-            "n": "normal_hang_words.txt",
-            "h": "hang_words.txt",
-        }
-
-        filename = filename_map.get(difficulty, "easy_hang_words.txt")
-
-        with open(filename, "r") as open_file:
-            all_text = open_file.read()
-
-        word_list = all_text.split("\n")
-        target = random.choice(word_list)
-
-        return target
+        return WordLoader.get_random_word(difficuly_level=difficulty)
 
     @staticmethod
     def phrase_game_setup(topic):
@@ -54,16 +35,7 @@ class Game:
         :param topic:
         :return:
         """
-
-        d = {"i": "idioms.txt", "s": "slogans.txt"}
-
-        with open(d[topic], "r") as open_file:
-            all_text = open_file.read()
-
-        phrase_list = all_text.split("\n")
-        target = phrase_list[random.randrange(0, len(phrase_list))]
-        target = target.lower()
-        return target
+        return PhraseLoader.get_random_word(topic=topic)
 
     def guess(self, targeted, game_type):
         """
