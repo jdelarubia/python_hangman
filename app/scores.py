@@ -14,6 +14,10 @@ class Scores:
     def scores(self):
         return self._scores
 
+    @scores.setter
+    def scores(self, new_scores: dict):
+        self._scores = new_scores
+
     def load_scores(self):
         """Loads and returns a json containing the user's high scores.
 
