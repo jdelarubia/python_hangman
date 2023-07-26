@@ -119,7 +119,7 @@ class Game:
                         self.chances -= 1
                     else:
                         BColors.warning("You already guessed that. Try again.")
-                print("Missed Letters: ", self.missed)
+                print("Missed Letters: ", sorted(self.missed))
             elif guess in ["solve", "exit", "quit"]:
                 if guess == "solve":
                     if game_type == "p":
