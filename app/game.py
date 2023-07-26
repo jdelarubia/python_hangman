@@ -35,35 +35,6 @@ class Game:
         return username
 
     @staticmethod
-    def choose_topic():
-        """
-        Allows the user to choose the topic of the phrases for a phrase. There are currently
-        options to choose idioms or slogans
-
-        :return:
-        """
-
-        options = ["i", "I", "s", "S"]
-
-        while True:
-            choice = input("Choose difficulty: i for idioms. s for slogans: ")
-            if choice.isalpha():
-                if len(choice) == 1:
-                    if choice in options:
-                        choice = choice.lower()
-                        break
-                    else:
-                        BColors.warning(
-                            "That's not one of the options I gave you. Try again."
-                        )
-                else:
-                    BColors.warning("I only need one letter. Try again.")
-            else:
-                BColors.warning("Letters only, please. Try again.")
-
-        return choice
-
-    @staticmethod
     def word_game_setup(difficulty):
         """
         Set up game by choosing the target word from a file based on difficulty
@@ -187,7 +158,7 @@ class Game:
                 difficulty = GamePrompts.choose_difficulty()
                 target = self.word_game_setup(difficulty)
             elif game_type == "p":
-                topic = self.choose_topic()
+                topic = GamePrompts.choose_topic()
                 target = self.phrase_game_setup(topic)
             else:
                 raise Exception("How did this even happen?")

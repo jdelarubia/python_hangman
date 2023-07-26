@@ -51,3 +51,22 @@ class GamePrompts:
                 continue
             break
         return choice
+
+    @staticmethod
+    def choose_topic():
+        """Return the topic of the phrases for a phrase; currently limited to idioms or slogans
+
+        Return:
+            str: topic chosen
+        """
+
+        options = ["i", "s"]
+        while True:
+            choice = input("Choose difficulty: i for idioms. s for slogans: ").lower()[
+                0
+            ]
+            if (not choice.isalpha()) or (choice not in options):
+                BColors.warning("That's not one of the options available. Try again.")
+                continue
+            break
+        return choice
