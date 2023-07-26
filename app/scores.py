@@ -35,6 +35,6 @@ class Scores:
         old_score = self.scores.get(self.username)
 
         if old_score is None or current_score > old_score:
-            self.high_scores[self.username] = current_score
+            self.scores[self.username] = current_score
             with open(self.SCORES_FILENAME, "w") as f:
-                json.dump(self.high_scores, f, indent=6)
+                json.dump(self.scores, f, indent=6)
