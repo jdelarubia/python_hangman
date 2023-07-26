@@ -19,20 +19,7 @@ class Game:
         self.username = ""
         self.wins = 0
         self.losses = 0
-
-        self.username = GamePrompts.get_username()
-        scores = Scores(self.username)
-        self.high_scores = scores.scores
-        self.greet_user(self.username)
-
-    def greet_user(self, username: str):
-        message = (
-            f"Welcome back, {username}"
-            if self.high_scores.get(username)
-            else f"Nice to meet you, {username}"
-        )
-        print(message)
-        print("I'll be keeping track of your high score. Good Luck!\n")
+        self.reset_values()
 
     @staticmethod
     def word_game_setup(difficulty):
