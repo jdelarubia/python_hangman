@@ -7,8 +7,12 @@ class Scores:
     SCORES_FILENAME = "highscores.json"
 
     def __init__(self, username: str) -> None:
-        self.scores = self.load_scores()
+        self._scores = self.load_scores()
         self.username = username
+
+    @property
+    def scores(self):
+        return self._scores
 
     def load_scores(self):
         """Loads and returns a json containing the user's high scores.
